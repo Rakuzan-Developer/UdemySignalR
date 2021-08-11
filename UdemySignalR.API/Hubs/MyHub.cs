@@ -11,11 +11,23 @@ namespace UdemySignalR.API.Hubs
 
         private static int ClientCount { get; set; } = 0;
 
+        public static int TeamCount { get; set; } = 7;
+
         public async Task SendName(string name)
         {
-            Names.Add(name);
+            if (Names.Count >= TeamCount)
+            {
+                await Clients.Caller.SendAsync("Error", $"Takım en fazla {TeamCount} kişi olabilir");
+            }
+            else
+            {
 
-            await Clients.All.SendAsync("ReceiveName", name);
+                Names.Add(name);
+
+                await Clients.All.SendAsync("ReceiveName", name);
+            }
+
+
 
         }
 
