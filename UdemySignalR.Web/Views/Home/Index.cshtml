@@ -64,6 +64,12 @@
             $("#clientCount").text(clientCount);
         });
 
+        connection.on("Notify", (countText) => {
+
+            $("#notify").html(`<div class="alert alert-success">${countText}  </div>`)
+
+        })
+
 
 
 
@@ -112,6 +118,9 @@
             </div>
             <div class="clearfix"></div>
         </div>
+
+        <div id="notify"></div>
+
     </div>
 
     <div class="col-md-8 offset-2">
