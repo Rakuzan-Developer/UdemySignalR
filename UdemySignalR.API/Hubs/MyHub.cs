@@ -114,7 +114,10 @@ namespace UdemySignalR.API.Hubs
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, teamName);
         }
 
-
+        public async Task SendProduct(Product p)
+        {
+            await Clients.All.SendAsync("ReceiveProduct", p);
+        }
 
     }
 }
